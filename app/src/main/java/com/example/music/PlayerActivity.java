@@ -35,6 +35,7 @@ public class PlayerActivity extends AppCompatActivity {
     static Uri uri;
     static MediaPlayer mediaPlayer;
     private final Handler handler=new Handler();
+    private Context mcontext;
     private Thread playT,prevT,nextT;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -67,6 +68,7 @@ public class PlayerActivity extends AppCompatActivity {
             public void onStopTrackingTouch(SeekBar seekBar) {
 
             }
+
         });
         PlayerActivity.this.runOnUiThread(new Runnable() {
             @Override
@@ -81,6 +83,12 @@ public class PlayerActivity extends AppCompatActivity {
                 }
                 handler.postDelayed(this,1000);
              }
+        });
+        backBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
         });
     }
     private String formattedTime(int currentPosition) {
@@ -341,16 +349,16 @@ public class PlayerActivity extends AppCompatActivity {
     }
 
     public void Data(Uri uri){
-        MediaMetadataRetriever retriever =new MediaMetadataRetriever();
-        retriever.setDataSource(uri.toString());
+        MediaMetadataRetriever r =new MediaMetadataRetriever();
+        r.setDataSource(uri.toString());
         int durationTotal=Integer.parseInt(listSong.get(position).getDuration())/1000;
         duration_total.setText(formattedTime(durationTotal));
-        byte[]art = retriever.getEmbeddedPicture();
+        byte[]art = r.getEmbeddedPicture();
         if(art!=null){
-            Glide.with(this).asBitmap().load(art).into(cover_art);
+            Glide.with(mcontext).asBitmap().load(art).into(cover_art);
         }
         else {
-            Glide.with(this).asBitmap().load(R.drawable.disc).into(cover_art);
+            Glide.with(mcontext).asBitmap().load(R.drawable.disc).into(cover_art);
         }
     }
 

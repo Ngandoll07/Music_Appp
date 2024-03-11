@@ -42,7 +42,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         permission();
     }
-//allow
+    //allow
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void permission() {
         if(ContextCompat.checkSelfPermission(getApplicationContext(), Manifest.permission.READ_MEDIA_AUDIO)
-        != PackageManager.PERMISSION_GRANTED){
+                != PackageManager.PERMISSION_GRANTED){
             ActivityCompat.requestPermissions(MainActivity.this,
                     new String[]{Manifest.permission.READ_MEDIA_AUDIO},REQUEST_CODE);
         }
@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
     }
-//botNav
+    //botNav
     private void MviewPager() {
         viewPager =findViewById(R.id.viewpaper);
         bottomNavigationView = findViewById(R.id.BottomNAV);
