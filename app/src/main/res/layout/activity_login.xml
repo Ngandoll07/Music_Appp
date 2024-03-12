@@ -67,6 +67,20 @@
                 android:backgroundTint="@color/login"
                 app:cornerRadius="20dp"/>
 
+            <TextView
+                android:id="@+id/signinwithGG"
+                android:layout_width="wrap_content"
+                android:layout_height="50dp"
+                android:layout_gravity="center"
+                android:background="@drawable/custom_edittext"
+                android:drawableRight="@drawable/gmail"
+                android:drawablePadding="10dp"
+                android:text="Đăng nhập bằng Google"
+                android:padding="15dp"
+                android:textColor="@color/black"
+                android:textColorHighlight="@color/cardview_dark_background"
+                android:layout_marginTop="40dp"/>
+
         </LinearLayout>
     </androidx.cardview.widget.CardView>
 
