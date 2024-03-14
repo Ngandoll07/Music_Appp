@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.fragment.app.FragmentStatePagerAdapter;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.Manifest;
@@ -23,6 +24,7 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import com.example.music.fragment_menu.AccountFragment;
 import com.example.music.fragment_menu.ViewPagerAdapter;
 import com.example.music.tab_music.MusicFiles;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -36,11 +38,26 @@ public class MainActivity extends AppCompatActivity {
     public static ArrayList<MusicFiles> musicFiles;
     private ViewPager viewPager;
     private BottomNavigationView bottomNavigationView;
+    private String tUsername="";
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         permission();
+        sendDataToFragment();
+    }
+    public String gettUsername() {
+        return tUsername;
+    }
+
+    private void sendDataToFragment() {
+        Bundle bundle = getIntent().getExtras();
+        String Username=bundle.getString("username");
+        tUsername=Username;
+        FragmentTransaction fragmentTransaction=getSupportFragmentManager().beginTransaction();
+        fragmentTransaction.replace(R.id.viewpaper,new AccountFragment());
+        fragmentTransaction.commit();
+
     }
     //allow
     @Override
